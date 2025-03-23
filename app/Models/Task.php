@@ -9,10 +9,15 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'due_date', 'status'];
-    
+    protected $fillable = ['title', 'description', 'due_date', 'status', 'user_id'];
+
     public static function statuses()
     {
         return ['pending', 'in progress', 'completed'];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

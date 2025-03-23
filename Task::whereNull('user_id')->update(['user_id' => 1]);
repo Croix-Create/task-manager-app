@@ -1,0 +1,108 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#1329
+    [34mall[39m: [
+      [34;4mApp\Models\Task[39;24m {#6203
+        [34mid[39m: [35m9[39m,
+        [34mtitle[39m: "[32mAdd user roles[39m",
+        [34mdescription[39m: "[32mCreate user roles, a user to assign a task to another user[39m",
+        [34mdue_date[39m: "[32m2025-03-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 15:43:49[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 15:43:49[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6204
+        [34mid[39m: [35m10[39m,
+        [34mtitle[39m: "[32mCreate search functionality[39m",
+        [34mdescription[39m: """
+          [32mTask Filtering and Search[39m\r\n
+          [32mImplement functionality to filter tasks by status and due date.[39m\r\n
+          [32mImplement a search feature that allows users to search for tasks by title or description.[39m
+          """,
+        [34mdue_date[39m: "[32m2025-03-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 15:44:31[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 15:44:31[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6205
+        [34mid[39m: [35m11[39m,
+        [34mtitle[39m: "[32mTask Activity Log[39m",
+        [34mdescription[39m: """
+          [32mRecord every action taken on a task (creation, updates, status changes) in an activity log.[39m\r\n
+          [32mDisplay the activity log in the task view.[39m
+          """,
+        [34mdue_date[39m: "[32m2025-03-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 15:45:47[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 15:45:47[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6206
+        [34mid[39m: [35m12[39m,
+        [34mtitle[39m: "[32mAPI Implementation[39m",
+        [34mdescription[39m: """
+          [32mExpose the task management functionality via a RESTful API. Ensure proper use of Laravel’s API resources, policies, and middleware.[39m\r\n
+          [32mInclude endpoints for user authentication, CRUD operations for tasks, and task assignment.[39m
+          """,
+        [34mdue_date[39m: "[32m2025-03-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 15:46:34[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 15:46:34[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6207
+        [34mid[39m: [35m13[39m,
+        [34mtitle[39m: "[32mTesting[39m",
+        [34mdescription[39m: "[32mWrite unit and feature tests for the key functionalities (e.g., task creation, assignment, and API endpoints).[39m",
+        [34mdue_date[39m: "[32m2025-03-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 15:47:04[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 15:47:04[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6208
+        [34mid[39m: [35m14[39m,
+        [34mtitle[39m: "[32mOptimization and Security[39m",
+        [34mdescription[39m: """
+          [32mApply best practices for database optimization (e.g., indexing, eager loading).[39m\r\n
+          [32mEnsure the application is secure, addressing common vulnerabilities (e.g., SQL injection, XSS, CSRF).[39m
+          """,
+        [34mdue_date[39m: "[32m2025-03-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 15:47:39[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 15:48:32[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6209
+        [34mid[39m: [35m15[39m,
+        [34mtitle[39m: "[32mtesting user task assignment[39m",
+        [34mdescription[39m: "[32mtest123[39m",
+        [34mdue_date[39m: "[32m2025-03-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 17:44:21[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 17:44:21[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6210
+        [34mid[39m: [35m16[39m,
+        [34mtitle[39m: "[32mme[39m",
+        [34mdescription[39m: "[32meadasfad[39m",
+        [34mdue_date[39m: "[32m2025-02-23[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 18:26:04[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 18:26:04[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+      [34;4mApp\Models\Task[39;24m {#6211
+        [34mid[39m: [35m17[39m,
+        [34mtitle[39m: "[32mTesting task creation per user[39m",
+        [34mdescription[39m: "[32masdhashduasdiaussudhashdashdiausahduiasdu[39m",
+        [34mdue_date[39m: "[32m2025-01-31[39m",
+        [34mstatus[39m: "[32mpending[39m",
+        [34mcreated_at[39m: "[32m2025-03-23 21:33:54[39m",
+        [34mupdated_at[39m: "[32m2025-03-23 21:33:54[39m",
+        [34muser_id[39m: [36mnull[39m,
+      },
+    ],
+  }
+
