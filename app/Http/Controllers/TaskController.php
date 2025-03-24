@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\TaskActivity;
 
 class TaskController extends Controller
 {
@@ -11,7 +12,6 @@ class TaskController extends Controller
     
     public function index(Request $request)
     {
-        // Ensure user is authenticated
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'You must be logged in to view tasks.');
         }
@@ -19,12 +19,10 @@ class TaskController extends Controller
         $user = auth()->user();
         $query = Task::query();
 
-        // Show all tasks if admin, otherwise only the user's tasks
         if (!$user->is_admin) {
             $query->where('user_id', $user->id);
         }
 
-        // Apply search filters if search button is used
         if ($request->has('search')) {
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
@@ -33,7 +31,6 @@ class TaskController extends Controller
             });
         }
 
-        // Filter by due date
         if ($request->filled('due_date')) {
             $query->whereDate('due_date', $request->input('due_date'));
         }
@@ -42,8 +39,6 @@ class TaskController extends Controller
 
         return view('dashboard', compact('tasks'));
     }
-
-    use App\Models\TaskActivity;
 
     private function logActivity($task, $action, $changes = null)
     {
@@ -54,6 +49,7 @@ class TaskController extends Controller
             'changes' => $changes ? json_encode($changes) : null,
         ]);
     }
+
 
     public function store(Request $request)
     {
@@ -69,6 +65,17 @@ class TaskController extends Controller
         $this->logActivity($task, 'created');
 
         return redirect()->route('dashboard')->with('success', 'Task created successfully!');
+    }
+
+    public function edit(Task $task)
+    {
+        if (auth()->id() !== $task->user_id && !auth()->user()->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $this->logActivity($task, 'viewed edit form');
+
+        return view('auth.edit-task', compact('task'));
     }
 
     public function update(Request $request, Task $task)
@@ -100,7 +107,6 @@ class TaskController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Task deleted successfully!');
     }
-
 
 }
 

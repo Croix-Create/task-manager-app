@@ -1,66 +1,228 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Task Manager App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Introduction
 
-## About Laravel
+This is a **Task Manager Application** built with **Laravel 12** and uses **TailwindCSS** for frontend views. It includes authentication, task management with CRUD operations, role-based access, and a task activity log.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Getting Started
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Follow these steps to set up and run the project on your local machine.
 
-## Learning Laravel
+### **1️⃣ Clone the Repository**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+# Using HTTPS
+git clone https://github.com/your-username/task-manager-app.git
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# OR Using SSH
+git clone git@github.com:your-username/task-manager-app.git
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+cd task-manager-app
+```
 
-## Laravel Sponsors
+### **2️⃣ Install Dependencies**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+```
 
-### Premium Partners
+### **3️⃣ Set Up Environment Variables**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Copy the `.env.example` file to `.env`:
 
-## Contributing
+```bash
+cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Now, update the following database credentials in `.env`:
 
-## Code of Conduct
+```env
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=task_manager
+DB_USERNAME=sail
+DB_PASSWORD=password
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🐳 Running Laravel with Sail
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+This project uses **Laravel Sail** for containerized development.
 
-## License
+### **4️⃣ Start Sail (Docker Containers)**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+./vendor/bin/sail up -d
+```
+
+If this is your first time using Sail, ensure Docker is running before executing the command.
+
+### **5️⃣ Run Database Migrations & Seeders**
+
+```bash
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+This will **reset the database**, create tables, and seed initial data.
+
+### **6️⃣ Generate Application Key**
+
+```bash
+./vendor/bin/sail artisan key:generate
+```
+
+### **7️⃣ Run the Application**
+
+Now, you can serve the application:
+
+```bash
+./vendor/bin/sail artisan serve
+```
+
+Access the app in your browser at:\
+👉 `http://localhost`
+
+---
+
+## ✉️ Setting Up MailPit for Email Testing
+
+This project uses **MailPit** to catch and view emails sent by the application.
+
+### **8️⃣ Start MailPit**
+
+MailPit is already configured in `docker-compose.yml`. Run it using:
+
+```bash
+./vendor/bin/sail up -d mailpit
+```
+
+Then, access the MailPit UI at:\
+👉 `http://localhost:8025`
+
+### **9️⃣ Run the Queue Worker**
+
+Laravel queues email jobs for sending. To process emails and see them in MailPit, run:
+
+```bash
+./vendor/bin/sail artisan queue:work
+```
+
+Now, when an email is triggered (e.g., user verification or password reset), it will appear in MailPit.
+
+---
+
+## 🔑 Authentication
+
+- **Login Page**: `/login`
+- **Admin Dashboard**: `/admin`
+- **Task Management**: `/tasks`
+
+---
+
+## 🛠 Common Issues & Fixes
+
+### **1. MySQL Access Denied**
+
+If you see **"Access denied for user 'sail'@'%"**, reset the MySQL password:
+
+```bash
+./vendor/bin/sail shell
+mysql -u root -p
+```
+
+Inside MySQL, run:
+
+```sql
+ALTER USER 'sail'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+Then restart Sail:
+
+```bash
+./vendor/bin/sail down && ./vendor/bin/sail up -d
+```
+
+### **2. Table Already Exists Error**
+
+If you get `SQLSTATE[42S01]: Base table or view already exists`, drop and recreate the database:
+
+```bash
+./vendor/bin/sail mysql -u sail -p
+```
+
+Then run:
+
+```sql
+DROP DATABASE task_manager;
+CREATE DATABASE task_manager;
+EXIT;
+```
+
+And rerun migrations:
+
+```bash
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+### **3. Laravel Testing (Fix 302 Redirects)**
+
+Some tests may fail due to authentication redirects. To fix, ensure you’re logging in users properly within tests:
+
+```php
+$response = $this->actingAs($user)->get('/tasks');
+$response->assertStatus(200);
+```
+
+Run tests:
+
+```bash
+./vendor/bin/sail artisan test
+```
+
+---
+
+## 🛠 API Endpoints
+
+This project includes a **REST API** for task management:
+
+### **🔐 Authentication**
+
+| Method | Endpoint    | Description |
+| ------ | ----------- | ----------- |
+| POST   | /api/login  | User Login  |
+| POST   | /api/logout | Logout User |
+
+### **📝 Task Management**
+
+| Method | Endpoint        | Description         |
+| ------ | --------------- | ------------------- |
+| GET    | /api/tasks      | Get all tasks       |
+| POST   | /api/tasks      | Create a new task   |
+| PUT    | /api/tasks/{id} | Update task details |
+| DELETE | /api/tasks/{id} | Delete a task       |
+
+Use Postman or any API client to interact with the endpoints.
+
+---
+
+## 🎯 Conclusion
+
+Your Laravel Task Manager is now set up and running! 🚀
+For any issues, check the Laravel logs:
+
+```bash
+./vendor/bin/sail artisan logs
+```
+
+Happy coding! 🎉
+
+
+
+I hope you have enjoyed the results! 🎉
+

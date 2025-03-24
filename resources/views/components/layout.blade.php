@@ -31,6 +31,15 @@
                         @csrf
                     </form>
                 @endguest
+                @auth
+                    @if(auth()->user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition">
+                            Admin Dashboard
+                        </a>
+                    @endif
+                @endauth
+
+
             </div>
         </div>
     </nav>

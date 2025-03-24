@@ -6,6 +6,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,9 +35,15 @@ Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.
 
 
 
-Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    });
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/tasks/{task}/log-activity', [TaskController::class, 'logActivity'])
+        ->name('tasks.log-activity');
+
+    Route::get('/tasks/{task}/activity-log', [TaskController::class, 'showActivityLog'])
+        ->name('tasks.activity-log');
 });
+
+
 
