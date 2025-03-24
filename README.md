@@ -216,6 +216,8 @@ Use Postman or any API client to interact with the endpoints.
 Your Laravel Task Manager is now set up and running! 🚀
 For any issues, check the Laravel logs:
 
+If you don't want to run artisan queue:work, check the laravel logs for the verify email link.
+
 ```bash
 ./vendor/bin/sail artisan logs
 ```
